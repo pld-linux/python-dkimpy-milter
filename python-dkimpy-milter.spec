@@ -16,7 +16,7 @@
 Summary:	DKIM signing and verification milter
 Name:		python-%{module}
 Version:	1.2.2
-Release:	0.6
+Release:	1
 License:	BSD-like
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/d/dkimpy-milter/%{module}-%{version}.tar.gz
