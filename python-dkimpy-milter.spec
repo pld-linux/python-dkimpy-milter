@@ -155,7 +155,8 @@ fi
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTable
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTablEed25519
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/SigningTable
-%attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
+%dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter
+%dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
 %attr(754,root,root) /etc/rc.d/init.d/dkimpy-milter
 %attr(755,root,root) %{_sbindir}/dkimpy-milter
 %{_mandir}/man5/dkimpy-milter.conf.5*
@@ -172,7 +173,8 @@ fi
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTable
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTablEed25519
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/SigningTable
-%attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
+%dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter
+%dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
 %attr(754,root,root) /etc/rc.d/init.d/dkimpy-milter
 %attr(755,root,root) %{_sbindir}/dkimpy-milter
 %{_mandir}/man5/dkimpy-milter.conf.5*
