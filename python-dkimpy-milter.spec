@@ -106,9 +106,19 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dkimpy-milter
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pre
+%groupadd -g 346 dkimpy-milter
+%useradd -u 346 -d /usr/share/empty -g dkimpy-milter -c "dkimpy-milter daemon user" dkimpy-milter
+
 %post
 /sbin/chkconfig --add dkimpy-milter
 %service dkimpy-milter restart
+
+%postun
+if [ "$1" = "0" ]; then
+	%userremove dkimpy-milter
+	%groupremove dkimpy-milter
+fi
 
 %preun
 if [ "$1" = "0" ]; then
@@ -116,9 +126,19 @@ if [ "$1" = "0" ]; then
         /sbin/chkconfig --del dkimpy-milter
 fi
 
+%pre -n python3-%{module}
+%groupadd -g 346 dkimpy-milter
+%useradd -u 346 -d /usr/share/empty -g dkimpy-milter -c "dkimpy-milter daemon user" dkimpy-milter
+
 %post -n python3-%{module}
 /sbin/chkconfig --add dkimpy-milter
 %service dkimpy-milter restart
+
+%postun -n python3-%{module}
+if [ "$1" = "0" ]; then
+	%userremove dkimpy-milter
+	%groupremove dkimpy-milter
+fi
 
 %preun -n python3-%{module}
 if [ "$1" = "0" ]; then
