@@ -16,7 +16,7 @@
 Summary:	DKIM signing and verification milter
 Name:		python-%{module}
 Version:	1.2.2
-Release:	0.5
+Release:	0.6
 License:	BSD-like
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/d/dkimpy-milter/%{module}-%{version}.tar.gz
@@ -87,6 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{/etc/{dkimpy-milter/keys,rc.d/init.d},/usr/sbin}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dkimpy-milter
+touch $RPM_BUILD_ROOT/etc/dkimpy-milter/{KeyTable,KeyTablEed25519,SigningTable}
 
 %if %{with python2}
 %py_install
@@ -150,8 +151,11 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README.md CHANGES
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
-%dir /etc/dkimpy-milter/keys
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTable
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTablEed25519
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/SigningTable
+%attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
 %attr(754,root,root) /etc/rc.d/init.d/dkimpy-milter
 %attr(755,root,root) %{_sbindir}/dkimpy-milter
 %{_mandir}/man5/dkimpy-milter.conf.5*
@@ -164,8 +168,11 @@ fi
 %files -n python3-%{module}
 %defattr(644,root,root,755)
 %doc README.md CHANGES
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
-%dir /etc/dkimpy-milter/keys
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTable
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTablEed25519
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/SigningTable
+%attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
 %attr(754,root,root) /etc/rc.d/init.d/dkimpy-milter
 %attr(755,root,root) %{_sbindir}/dkimpy-milter
 %{_mandir}/man5/dkimpy-milter.conf.5*
