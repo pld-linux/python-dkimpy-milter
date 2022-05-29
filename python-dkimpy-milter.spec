@@ -43,6 +43,7 @@ BuildRequires:	python3-pymilter
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	python-modules >= 1:2.5
+Requires:	python-setuptools
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,6 +54,7 @@ DKIM signing and verification milter.
 Summary:	DKIM signing and verification milter
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.2
+Requires:	python3-setuptools
 
 %description -n python3-%{module}
 DKIM signing and verification milter
