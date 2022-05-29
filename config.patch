@@ -1,6 +1,6 @@
 diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc/dkimpy-milter.conf
 --- dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf	2022-05-29 21:57:00.932051546 +0200
-+++ dkimpy-milter-1.2.2/etc/dkimpy-milter.conf	2022-05-29 22:45:43.738141589 +0200
++++ dkimpy-milter-1.2.2/etc/dkimpy-milter.conf	2022-05-29 23:18:10.535143906 +0200
 @@ -1,48 +1,45 @@
 -# This is a basic configuration that can easily be adapted to suit a standard
 -# installation. For more advanced options, see dkimpy-milter.conf(5).
@@ -73,7 +73,7 @@ diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc
 +# inet:port                   to listen on all interfaces
 +# local:/path/to/socket       to listen on a UNIX domain socket
 +#
-+#Socket local:/var/spool/postfix/dkimpy/dkimpy-milter.sock
++#Socket local:/var/spool/postfix/dkimpy/dkimpy-milter.socket
 +Socket			inet:8892@localhost
 +
 +# Path to key tables and signing table
