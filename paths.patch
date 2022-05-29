@@ -1,18 +1,6 @@
-diff -ur dkimpy-milter-1.2.2.orig/dkimpy_milter/config.py dkimpy-milter-1.2.2/dkimpy_milter/config.py
---- dkimpy-milter-1.2.2.orig/dkimpy_milter/config.py	2020-04-09 04:49:44.000000000 +0200
-+++ dkimpy-milter-1.2.2/dkimpy_milter/config.py	2022-05-29 14:34:43.873562747 +0200
-@@ -42,7 +42,7 @@
-     'MinimumKeyBits': 1024,
-     'Socket': None,
-     'PidFile': None,
--    'UserID': 'dkimpy-milter',
-+    'UserID': 'nobody',
-     'Canonicalization': 'relaxed/simple',
-     'InternalHosts': '127.0.0.1',
-     'IntHosts': False,
 diff -ur dkimpy-milter-1.2.2.orig/dkimpy_milter/__init__.py dkimpy-milter-1.2.2/dkimpy_milter/__init__.py
 --- dkimpy-milter-1.2.2.orig/dkimpy_milter/__init__.py	2020-08-09 20:15:48.000000000 +0200
-+++ dkimpy-milter-1.2.2/dkimpy_milter/__init__.py	2022-05-29 13:50:24.310772566 +0200
++++ dkimpy-milter-1.2.2/dkimpy_milter/__init__.py	2022-05-29 21:56:43.077013869 +0200
 @@ -451,7 +451,7 @@
  def main():
      # Ugh, but there's no easy way around this.
@@ -33,7 +21,7 @@ diff -ur dkimpy-milter-1.2.2.orig/dkimpy_milter/__init__.py dkimpy-milter-1.2.2/
          syslog.syslog('dkimpy-milter starting:{0} user:{1}'
 diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc/dkimpy-milter.conf
 --- dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf	2020-04-09 04:49:44.000000000 +0200
-+++ dkimpy-milter-1.2.2/etc/dkimpy-milter.conf	2022-05-29 14:35:27.503655350 +0200
++++ dkimpy-milter-1.2.2/etc/dkimpy-milter.conf	2022-05-29 21:57:00.932051546 +0200
 @@ -8,10 +8,10 @@
  # privileged user (e.g. Postfix)
  UMask			007
@@ -47,7 +35,7 @@ diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc
  #Selector		default
  
  # Commonly-used options; the commented-out versions show the defaults.
-@@ -27,17 +27,18 @@
+@@ -27,17 +27,17 @@
  # ##  inet:port                   to listen on all interfaces
  # ##  local:/path/to/socket       to listen on a UNIX domain socket
  #
@@ -55,7 +43,6 @@ diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc
 +#Socket local:/var/spool/postfix/dkimpy/dkimpy-milter.sock
  #
  #Socket			inet:8892@localhost
-+Socket inet:8892@localhost
  
  ##  PidFile filename
 -###      default /run/dkimpy-milter/dkimpy-milter.pid
@@ -69,15 +56,9 @@ diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc
  
  ##  Userid userid
  ###      default dkimpy-milter
-@@ -45,4 +46,4 @@
- ###  Change to user "userid" before starting normal operation?  May include
- ###  a group ID as well, separated from the userid by a colon.
- #
--UserID			dkimpy-milter
-+UserID			nobody:postfix
 diff -ur dkimpy-milter-1.2.2.orig/setup.py dkimpy-milter-1.2.2/setup.py
 --- dkimpy-milter-1.2.2.orig/setup.py	2020-08-09 20:16:23.000000000 +0200
-+++ dkimpy-milter-1.2.2/setup.py	2022-05-29 13:28:25.815906789 +0200
++++ dkimpy-milter-1.2.2/setup.py	2022-05-29 21:56:43.077013869 +0200
 @@ -32,17 +32,17 @@
  class FileMacroExpand(distutils.cmd.Command):
      description = "Expand @@ variables in input files, simlar to make macros."
