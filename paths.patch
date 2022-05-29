@@ -27,7 +27,7 @@ diff -ur dkimpy-milter-1.2.2.orig/dkimpy_milter/__init__.py dkimpy-milter-1.2.2/
                      socketname = 'fd:3'
          if socketname is None:
 -            socketname = 'local:/var/run/dkimpy-milter/dkimpy-milter.sock'
-+            socketname = 'local:/var/spool/postfix/dkimpy-milter/dkimpy-milter.sock'
++            socketname = 'local:/var/spool/postfix/dkimpy/dkimpy-milter.sock'
      sys.stdout.flush()
      if milterconfig.get('Syslog'):
          syslog.syslog('dkimpy-milter starting:{0} user:{1}'
