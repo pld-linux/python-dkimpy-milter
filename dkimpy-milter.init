@@ -30,9 +30,6 @@ else
 	exit 0
 fi
 
-# Get service config - may override defaults
-[ -f /etc/sysconfig/dkimpy-milter ] && . /etc/sysconfig/dkimpy-milter
-
 start() {
 	# Check if the service is already running?
 	if [ -f /var/lock/subsys/dkimpy-milter ]; then
@@ -40,8 +37,16 @@ start() {
 		return
 	fi
 
+	# Clean up stale pid file
+	if [ -f /var/run/dkimpy-milter.pid ]; then
+		pid=`cat /var/run/dkimpy-milter.pid`
+		if ! ps -p "$pid" >/dev/null 2>&1; then
+			rm -f /var/run/dkimpy-milter.pid
+		fi
+	fi
+
 	msg_starting "DKIM Milter"
-	daemon /usr/sbin/dkimpy-milter
+	daemon --fork /usr/sbin/dkimpy-milter
 	RETVAL=$?
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/dkimpy-milter
 }
@@ -55,7 +60,7 @@ stop() {
 	# Stop daemons.
 	msg_stopping "DKIM Milter"
 	killproc dkimpy-milter
-	rm -f /var/lock/subsys/dkimpy-milter
+	rm -f /var/lock/subsys/dkimpy-milter /var/run/dkimpy-milter.pid
 }
 
 condrestart() {
