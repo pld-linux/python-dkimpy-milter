@@ -16,7 +16,7 @@
 Summary:	DKIM signing and verification milter
 Name:		python-%{module}
 Version:	1.2.2
-Release:	0.2
+Release:	0.3
 License:	BSD-like
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/d/dkimpy-milter/%{module}-%{version}.tar.gz
@@ -98,6 +98,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dkimpy-milter
 %py3_install
 %endif
 
+%{__mv} $RPM_BUILD_ROOT/usr/etc/dkimpy-milter/dkimpy-milter.conf $RPM_BUILD_ROOT/etc/dkimpy-milter/dkimpy-milter.conf
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -125,6 +127,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README.md
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
 %attr(754,root,root) /etc/rc.d/init.d/dkimpy-milter
 %attr(755,root,root) %{_bindir}/dkimpy-milter
 %{_mandir}/man5/dkimpy-milter.conf.5*
@@ -137,6 +140,7 @@ fi
 %files -n python3-%{module}
 %defattr(644,root,root,755)
 %doc README.md
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
 %attr(754,root,root) /etc/rc.d/init.d/dkimpy-milter
 %attr(755,root,root) %{_bindir}/dkimpy-milter
 %{_mandir}/man5/dkimpy-milter.conf.5*
