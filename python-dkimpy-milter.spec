@@ -9,7 +9,7 @@
 # - 'egg_name' should equal to Python egg name
 # - 'pypi_name' must match the Python Package Index name
 %define		module		dkimpy-milter
-Summary:	DKIM, ARC, and TLSRPT email signing and verification
+Summary:	DKIM signing and verification milter
 Name:		python-%{module}
 Version:	1.2.2
 Release:	0.1
@@ -47,19 +47,15 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Python module that implements DKIM (DomainKeys Identified Mail) email
-signing and verification (RFC6376).
-
-%description -l pl.UTF-8
+DKIM signing and verification milter.
 
 %package -n python3-%{module}
-Summary:	DKIM, ARC, and TLSRPT email signing and verification
+Summary:	DKIM signing and verification milter
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.2
 
 %description -n python3-%{module}
-Python module that implements DKIM (DomainKeys Identified Mail) email
-signing and verification (RFC6376).
+DKIM signing and verification milter
 
 %prep
 %setup -q -n %{module}-%{version}
