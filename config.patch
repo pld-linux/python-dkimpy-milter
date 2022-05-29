@@ -1,6 +1,6 @@
 diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc/dkimpy-milter.conf
 --- dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf	2022-05-29 21:57:00.932051546 +0200
-+++ dkimpy-milter-1.2.2/etc/dkimpy-milter.conf	2022-05-29 22:23:32.664366219 +0200
++++ dkimpy-milter-1.2.2/etc/dkimpy-milter.conf	2022-05-29 22:45:43.738141589 +0200
 @@ -1,48 +1,45 @@
 -# This is a basic configuration that can easily be adapted to suit a standard
 -# installation. For more advanced options, see dkimpy-milter.conf(5).
@@ -77,9 +77,9 @@ diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc
 +Socket			inet:8892@localhost
 +
 +# Path to key tables and signing table
-+KeyTable		/etc/dkimpy-milter/KeyTable
-+KeyTableEd25519		/etc/dkimpy-milter/KeyTablEed25519
-+SigningTable		/etc/dkimpy-milter/SigningTable
++#KeyTable		/etc/dkimpy-milter/KeyTable
++#KeyTableEd25519		/etc/dkimpy-milter/KeyTablEed25519
++#SigningTable		/etc/dkimpy-milter/SigningTable
 +
 +# Milter macros telling us what to do (sign or verify)
 +MacroList		daemon_name|ORIGINATING
