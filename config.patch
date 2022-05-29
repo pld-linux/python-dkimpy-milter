@@ -1,0 +1,86 @@
+diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc/dkimpy-milter.conf
+--- dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf	2022-05-29 21:57:00.932051546 +0200
++++ dkimpy-milter-1.2.2/etc/dkimpy-milter.conf	2022-05-29 22:23:32.664366219 +0200
+@@ -1,48 +1,45 @@
+-# This is a basic configuration that can easily be adapted to suit a standard
+-# installation. For more advanced options, see dkimpy-milter.conf(5).
++# Name of the file where the filter should write its pid before beginning
++# normal operations.
++PidFile			/var/run/dkimpy-milter.pid
++
++# Run as user, may include a group as well, separated from the userid by
++# a colon.
++UserID			dkimpy-milter:postfix
+ 
+ # Log to syslog
+ Syslog			yes
+ 
++# Syslog facility
++SyslogFacility		mail
++
++# Log successfull signing and verification
++SyslogSuccess		yes
++
+ # Required to use local socket with MTAs that access the socket as a non-
+ # privileged user (e.g. Postfix)
+ UMask			007
+ 
+-# Sign for example.com with key in /etc/dkimpy-milter/dkim.key using
+-# selector '2007' (e.g. 2007._domainkey.example.com)
+-#Domain			example.com
+-#KeyFile		/etc/dkimpy-milter/example.com.key
+-#Selector		default
+-
+-# Commonly-used options; the commented-out versions show the defaults.
+-#Canonicalization	relaxed/simple
+-#Mode			sv
+-
+-# ##  Socket socketspec
+-# ##
+-# ##  Names the socket where this filter should listen for milter connections
+-# ##  from the MTA.  Required.  Should be in one of these forms:
+-# ##
+-# ##  inet:port@address           to listen on a specific interface
+-# ##  inet:port                   to listen on all interfaces
+-# ##  local:/path/to/socket       to listen on a UNIX domain socket
+-#
+-#Socket local:/var/spool/postfix/dkimpy/dkimpy-milter.sock
+-#
+-#Socket			inet:8892@localhost
++# Operating mode
++Mode			sv
+ 
+-##  PidFile filename
+-###      default /var/run/dkimpy-milter.pid
+-###
+-###  Name of the file where the filter should write its pid before beginning
+-###  normal operations.
+-#
+-PidFile			/var/run/dkimpy-milter.pid
++# Canonicalization method(s) to be used when signing
++Canonicalization	relaxed/simple
+ 
+-##  Userid userid
+-###      default dkimpy-milter
+-###
+-###  Change to user "userid" before starting normal operation?  May include
+-###  a group ID as well, separated from the userid by a colon.
++# Names the socket where this filter should listen for milter connections
++# from the MTA. Required.  Should be in one of these forms:
+ #
+-UserID			dkimpy-milter
++# inet:port@address           to listen on a specific interface
++# inet:port                   to listen on all interfaces
++# local:/path/to/socket       to listen on a UNIX domain socket
++#
++#Socket local:/var/spool/postfix/dkimpy/dkimpy-milter.sock
++Socket			inet:8892@localhost
++
++# Path to key tables and signing table
++KeyTable		/etc/dkimpy-milter/KeyTable
++KeyTableEd25519		/etc/dkimpy-milter/KeyTablEed25519
++SigningTable		/etc/dkimpy-milter/SigningTable
++
++# Milter macros telling us what to do (sign or verify)
++MacroList		daemon_name|ORIGINATING
++MacroListVerify		daemon_name|VERIFYING

@@ -23,6 +23,7 @@ Source0:	https://files.pythonhosted.org/packages/source/d/dkimpy-milter/%{module
 # Source0-md5:	dc0f054bc7dc6178eb31f20d93b73cca
 Source1:	dkimpy-milter.init
 Patch0:		paths.patch
+Patch1:		config.patch
 URL:		https://launchpad.net/dkimpy-milter
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.5
@@ -70,6 +71,7 @@ DKIM signing and verification milter
 %prep
 %setup -q -n %{module}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %if %{with python2}
