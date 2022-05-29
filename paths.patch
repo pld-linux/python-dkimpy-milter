@@ -52,10 +52,10 @@ diff -ur dkimpy-milter-1.2.2.orig/etc/dkimpy-milter.conf dkimpy-milter-1.2.2/etc
  # ##  local:/path/to/socket       to listen on a UNIX domain socket
  #
 -#Socket local:/run/dkimpy-milter/dkimpy-milter.sock
-+#Socket local:/var/spool/postfix/dkimpy-milter/dkimpy-milter.sock
++#Socket local:/var/spool/postfix/dkimpy/dkimpy-milter.sock
  #
  #Socket			inet:8892@localhost
-+Socket local:/var/spool/postfix/dkimpy-milter/dkimpy-milter.sock
++Socket inet:8892@localhost
  
  ##  PidFile filename
 -###      default /run/dkimpy-milter/dkimpy-milter.pid
