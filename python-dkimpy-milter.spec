@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{/etc/{dkimpy-milter/keys,rc.d/init.d},/usr/sbin}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dkimpy-milter
-touch $RPM_BUILD_ROOT/etc/dkimpy-milter/{KeyTable,KeyTablEed25519,SigningTable}
+touch $RPM_BUILD_ROOT/etc/dkimpy-milter/{KeyTable,KeyTableEd25519,SigningTable}
 
 %if %{with python2}
 %py_install
@@ -153,7 +153,7 @@ fi
 %doc README.md CHANGES
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTable
-%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTablEed25519
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTableEd25519
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/SigningTable
 %dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter
 %dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
@@ -171,7 +171,7 @@ fi
 %doc README.md CHANGES
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/dkimpy-milter.conf
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTable
-%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTablEed25519
+%attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/KeyTableEd25519
 %attr(640,dkimpy-milter,dkimpy-milter) %config(noreplace) %verify(not md5 mtime size) /etc/dkimpy-milter/SigningTable
 %dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter
 %dir %attr(750,dkimpy-milter,dkimpy-milter) /etc/dkimpy-milter/keys
