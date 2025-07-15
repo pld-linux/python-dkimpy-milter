@@ -70,8 +70,8 @@ DKIM signing and verification milter
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %if %{with python2}
