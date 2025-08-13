@@ -16,7 +16,7 @@
 Summary:	DKIM signing and verification milter
 Name:		python-%{module}
 Version:	1.2.3
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/d/dkimpy-milter/%{module}-%{version}.tar.gz
@@ -51,6 +51,8 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	python-modules >= 1:2.5
 Requires:	python-setuptools
+Provides:	user(dkimpy-milter)
+Provides:	group(dkimpy-milter)
 Conflicts:	python3-dkimpy-milter
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -63,6 +65,8 @@ Summary:	DKIM signing and verification milter
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.2
 Requires:	python3-setuptools
+Provides:	user(dkimpy-milter)
+Provides:	group(dkimpy-milter)
 Conflicts:	python-dkimpy-milter
 
 %description -n python3-%{module}
